@@ -38,4 +38,14 @@ Route::get('/professor/lista2', function() {
 
 Route::get('/professor/lista3', 'ProfessorController@lista');
 
+Route::get('/professor/delete/{id}', 'ProfessorController@excluir');
+
+Route::get('/professor/edita/{id}', 'ProfessorController@editar');
+
+Route::get('/professor/novo', 'ProfessorController@novo');
+
+Route::post('/professor/salva', 'ProfessorController@salvar');
+
+
+
 //Route::get('/professor/salva', 'ProfessorController@salva');
