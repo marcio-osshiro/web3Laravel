@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Professor;
+use App\Area;
 
 class ProfessorController extends Controller
 {
@@ -20,24 +21,25 @@ class ProfessorController extends Controller
 
   public function novo() {
     $professor = new Professor();
-    return view ('formulario', ['professor' => $professor]);
+    $areas = Area::all();
+    return view ('formulario', compact('professor', 'areas') );
   }
   public function editar($id) {
     $professor = Professor::find($id);
-    return view ('formulario', ['professor' => $professor]);
+    $areas = Area::all();
+    return view ('formulario', compact('professor', 'areas') );
   }
 
-  public function salvar() {
-    echo "salvando em alguns instantes ....";
+  public function salvar(Request $request) {
+    $id = $request->input('id');
+    if ($id=="") { // novo
+        $professor = new Professor();
+    } else { // alteração
+      $professor = Professor::find($id);
+    }
+    $professor->nome = $request->input('nome');
+    $professor->area_id = $request->input('area_id');
+    $professor->save();
+    return redirect('professor/lista3');
   }
-    // public function lista() {
-    //   $professores = Professor::all();
-    //   return view('professor.lista', ['professores' => $professores]);
-    // }
-    // public function salva() {
-    //   $professor = Professor::find(34);
-    //   $professor->delete();
-    //
-    //   echo "professor apagado";
-    // }
 }

@@ -25,7 +25,11 @@
         </div>
         <div class="form-group">
           <label for="area_id">Area</label>
-          <input type="text" class="form-control" id="area_id" placeholder="Informe a área" name="area_id" value="{{$professor->area_id}}">
+          <select name="area_id">
+            @foreach($areas as $area)
+            <option value="{{$area->id}}" {{$professor->area_id == $area->id? "selected": ""}}>{{$area->descricao}}</option>
+            @endforeach
+          </select>
         </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
       </form>

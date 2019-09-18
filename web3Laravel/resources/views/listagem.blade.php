@@ -28,7 +28,7 @@
             <tr>
             <td>{{ $professor->id }}</td>
             <td>{{ $professor->nome }}</td>
-            <td>{{ $professor->area_id }}</td>
+            <td>{{ $professor->area->descricao }}</td>
             <td>
               <a class='btn btn-primary' href='/professor/edita/{{$professor->id}}'>Editar</a>
               <a class='btn btn-danger' href='/professor/delete/{{$professor->id}}'>Excluir</a>
