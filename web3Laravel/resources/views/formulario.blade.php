@@ -12,8 +12,18 @@
   </head>
   <body>
     <div class="container">
+      @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
+
       <h1>Formulário do Professor</h1>
-      <form action="/professor/salva" method="post">
+      <form action="{{ url('/professor/salva') }}" method="post">
         @csrf
         <div class="form-group">
           <label for="id">ID</label>
@@ -21,13 +31,13 @@
         </div>
         <div class="form-group">
           <label for="nome">Nome</label>
-          <input type="text" class="form-control" id="nome" placeholder="Informe o nome" name="nome" value="{{$professor->nome}}">
+          <input type="text" class="form-control" id="nome" placeholder="Informe o nome" name="nome" value="{{ old('nome', $professor->nome)}}">
         </div>
         <div class="form-group">
           <label for="area_id">Area</label>
           <select name="area_id">
             @foreach($areas as $area)
-            <option value="{{$area->id}}" {{$professor->area_id == $area->id? "selected": ""}}>{{$area->descricao}}</option>
+            <option value="{{$area->id}}" {{old('area_id', $professor->area_id) == $area->id? "selected": ""}}>{{$area->descricao}}</option>
             @endforeach
           </select>
         </div>

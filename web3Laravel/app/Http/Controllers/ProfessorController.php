@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Professor;
 use App\Area;
+use Validator;
+use App\Http\Requests\ProfessorRequest;
 
 class ProfessorController extends Controller
 {
@@ -30,7 +32,40 @@ class ProfessorController extends Controller
     return view ('formulario', compact('professor', 'areas') );
   }
 
+  public function salvar1(ProfessorRequest $request) {
+    $id = $request->input('id');
+    if ($id=="") { // novo
+        $professor = new Professor();
+    } else { // alteração
+      $professor = Professor::find($id);
+    }
+    $professor->nome = $request->input('nome');
+    $professor->area_id = $request->input('area_id');
+    $professor->save();
+    return redirect('professor/lista3');
+  }
+
+
   public function salvar(Request $request) {
+    // $validatedData = $request->validate([
+    //         'nome' => 'required|min:20',
+    //     ]);
+
+    $validator = Validator::make($request->all(), [
+                'nome' => 'required|min:10',
+            ]);
+
+    if ($validator->fails()) {
+        $professor = new Professor();
+        $professor->nome = $request->input('nome');
+        $professor->id = $request->input('id');
+        $professor->area_id = $request->input('area_id');
+        $errors = $validator->messages();
+        $areas = Area::all();
+        return view('formulario', compact('professor', 'errors', 'areas'));
+    }
+
+
     $id = $request->input('id');
     if ($id=="") { // novo
         $professor = new Professor();

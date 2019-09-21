@@ -44,7 +44,9 @@ Route::get('/professor/edita/{id}', 'ProfessorController@editar');
 
 Route::get('/professor/novo', 'ProfessorController@novo');
 
-Route::post('/professor/salva', 'ProfessorController@salvar');
+Route::post('/professor/salva', 'ProfessorController@salvar1');
+
+//Route::post('/professor/salva', 'ProfessorController@salvar');
 
 
 
