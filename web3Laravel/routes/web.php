@@ -11,9 +11,7 @@ use App\Professor;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@index');
 
 Route::get('/professor/lista', function() {
   $professores = DB::table('professor')->get();
@@ -51,3 +49,7 @@ Route::post('/professor/salva', 'ProfessorController@salvar1');
 
 
 //Route::get('/professor/salva', 'ProfessorController@salva');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

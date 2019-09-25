@@ -12,7 +12,7 @@ class ProfessorController extends Controller
 {
   public function lista() {
     $professores = Professor::all();
-    return view('listagem', ['professores'=> $professores]);
+    return view('professor.listagem', ['professores'=> $professores]);
   }
 
   public function excluir($id) {
@@ -24,12 +24,12 @@ class ProfessorController extends Controller
   public function novo() {
     $professor = new Professor();
     $areas = Area::all();
-    return view ('formulario', compact('professor', 'areas') );
+    return view ('professor.formulario', compact('professor', 'areas') );
   }
   public function editar($id) {
     $professor = Professor::find($id);
     $areas = Area::all();
-    return view ('formulario', compact('professor', 'areas') );
+    return view ('professor.formulario', compact('professor', 'areas') );
   }
 
   public function salvar1(ProfessorRequest $request) {
@@ -41,6 +41,8 @@ class ProfessorController extends Controller
     }
     $professor->nome = $request->input('nome');
     $professor->area_id = $request->input('area_id');
+    $professor->salario = $request->input('salario');
+    $professor->data_nascimento = $request->input('data_nascimento');
     $professor->save();
     return redirect('professor/lista3');
   }
@@ -62,10 +64,8 @@ class ProfessorController extends Controller
         $professor->area_id = $request->input('area_id');
         $errors = $validator->messages();
         $areas = Area::all();
-        return view('formulario', compact('professor', 'errors', 'areas'));
+        return view('professor.formulario', compact('professor', 'errors', 'areas'));
     }
-
-
     $id = $request->input('id');
     if ($id=="") { // novo
         $professor = new Professor();
