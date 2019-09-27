@@ -10,6 +10,11 @@ use App\Http\Requests\ProfessorRequest;
 
 class ProfessorController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
   public function lista() {
     $professores = Professor::all();
     return view('professor.listagem', ['professores'=> $professores]);
