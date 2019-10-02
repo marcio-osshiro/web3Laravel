@@ -52,4 +52,4 @@ Route::post('/professor/salva', 'ProfessorController@salvar1');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'IndexController@index');

@@ -12,7 +12,7 @@ class ProfessorController extends Controller
 {
   public function __construct()
   {
-      $this->middleware('auth');
+      $this->middleware('auth')->except("lista");
   }
 
   public function lista() {
