@@ -30,4 +30,5 @@
       @endforeach
     </tbody>
   </table>
+  {{ $professores->links() }}
 @endsection
