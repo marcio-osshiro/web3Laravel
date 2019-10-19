@@ -7,6 +7,7 @@ use App\Professor;
 use App\Area;
 use Validator;
 use App\Http\Requests\ProfessorRequest;
+use Illuminate\Support\Str;
 
 class ProfessorController extends Controller
 {
@@ -38,11 +39,21 @@ class ProfessorController extends Controller
   }
 
   public function salvar1(ProfessorRequest $request) {
+    $file = $request->file('foto');
+
     $id = $request->input('id');
     if ($id=="") { // novo
         $professor = new Professor();
+        $professor->foto = "";
     } else { // alteração
       $professor = Professor::find($id);
+    }
+    if (isset($file)) {
+      $random_name = Str::random(27);
+      $extension = $file->getClientOriginalExtension();
+      $filename=$random_name.'.'.$extension;
+      $upload = $file->storeAs('fotos', $filename);
+      $professor->foto = $filename;
     }
     $professor->nome = $request->input('nome');
     $professor->area_id = $request->input('area_id');
@@ -54,6 +65,8 @@ class ProfessorController extends Controller
 
 
   public function salvar(Request $request) {
+    var_dump($request->file('foto'));
+    return;
     // $validatedData = $request->validate([
     //         'nome' => 'required|min:20',
     //     ]);
@@ -67,6 +80,10 @@ class ProfessorController extends Controller
         $professor->nome = $request->input('nome');
         $professor->id = $request->input('id');
         $professor->area_id = $request->input('area_id');
+
+
+
+
         $errors = $validator->messages();
         $areas = Area::all();
         return view('professor.formulario', compact('professor', 'errors', 'areas'));

@@ -11,7 +11,8 @@
       </div>
   @endif
   <h1>Formulário do Professor</h1>
-  <form action="{{ url('/professor/salva') }}" method="post">
+  <img src="{{ Storage::url('fotos/'.$professor->foto) }}">
+  <form action="{{ url('/professor/salva') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label for="id">ID</label>
@@ -36,6 +37,11 @@
     <div class="form-group">
       <label for="salario">Salário</label>
       <input type="number" class="form-control" id="salario" placeholder="Informe o salário" name="salario" value="{{ old('salario', $professor->salario)}}">
+    </div>
+
+    <div class="form-group">
+      <label for="foto">Foto</label>
+      <input type="file" class="form-control" id="foto" placeholder="Selecione o arquivo de foto" name="foto" accept="image/*">
     </div>
 
     <button type="submit" class="btn btn-primary">Salvar</button>

@@ -9,7 +9,7 @@ class Professor extends Model
     //
      protected $table = 'professor';
      public $timestamps = false;
-     protected $fillable = ['nome', 'area_id'];
+     protected $fillable = ['nome', 'area_id', 'foto'];
 
      public function area() {
        return $this->belongsTo("App\Area");
