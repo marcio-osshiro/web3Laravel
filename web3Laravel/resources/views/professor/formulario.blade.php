@@ -1,5 +1,12 @@
 @extends('layouts.main')
 
+<style>
+  .foto-professor {
+    width: 300px;
+  }
+</style>
+
+
 @section('content')
   @if ($errors->any())
       <div class="alert alert-danger">
@@ -11,7 +18,11 @@
       </div>
   @endif
   <h1>Formulário do Professor</h1>
-  <img src="{{ Storage::url('fotos/'.$professor->foto) }}">
+  @if ( $professor->foto != "" )
+    <img class="foto-professor" src="{{ Storage::url('fotos/'.$professor->foto) }}">
+  @else
+    <img class="foto-professor" src="{{ Storage::url('fotos/carinha.jpg') }}">
+  @endif
   <form action="{{ url('/professor/salva') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
