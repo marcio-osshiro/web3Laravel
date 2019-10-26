@@ -38,6 +38,7 @@
         <td>
           <a class='btn btn-primary' href='/professor/edita/{{$professor->id}}'>Editar</a>
           <a class='btn btn-danger' href='/professor/delete/{{$professor->id}}'>Excluir</a>
+          <a class='btn btn-primary' href='/horario/edita/{{$professor->id}}'>Horário</a>
         </td>
         </tr>
       @endforeach

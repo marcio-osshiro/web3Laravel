@@ -44,12 +44,11 @@ Route::get('/professor/novo', 'ProfessorController@novo');
 
 Route::post('/professor/salva', 'ProfessorController@salvar1');
 
-//Route::post('/professor/salva', 'ProfessorController@salvar');
-
-
-
-//Route::get('/professor/salva', 'ProfessorController@salva');
-
 Auth::routes();
 
 Route::get('/home', 'IndexController@index');
+
+Route::get('/horario/edita/{id}', 'HorarioController@editar');
+
+Route::post('/horario/salva', 'HorarioController@salvar');
+Route::get('/horario/delete/{id}', 'HorarioController@excluir');

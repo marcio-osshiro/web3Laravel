@@ -14,4 +14,9 @@ class Professor extends Model
      public function area() {
        return $this->belongsTo("App\Area");
      }
+
+     public function horarios() {
+       return $this->hasMany("App\Horario");
+     }
+
 }
