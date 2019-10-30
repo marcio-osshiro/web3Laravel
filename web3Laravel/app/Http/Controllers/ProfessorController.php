@@ -8,6 +8,7 @@ use App\Area;
 use Validator;
 use App\Http\Requests\ProfessorRequest;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ProfessorController extends Controller
 {
@@ -98,5 +99,12 @@ class ProfessorController extends Controller
     $professor->area_id = $request->input('area_id');
     $professor->save();
     return redirect('professor/lista3');
+  }
+
+  public function report() {
+    $professores = Professor::all();
+    $pdf = PDF::loadView('report.professor', compact('professores'));
+    //return $pdf->stream('professores.pdf');
+    return $pdf->download('professores.pdf');
   }
 }

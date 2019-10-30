@@ -52,3 +52,5 @@ Route::get('/horario/edita/{id}', 'HorarioController@editar');
 
 Route::post('/horario/salva', 'HorarioController@salvar');
 Route::get('/horario/delete/{id}', 'HorarioController@excluir');
+
+Route::get('/professor/report', 'ProfessorController@report');
