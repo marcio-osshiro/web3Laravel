@@ -54,3 +54,6 @@ Route::post('/horario/salva', 'HorarioController@salvar');
 Route::get('/horario/delete/{id}', 'HorarioController@excluir');
 
 Route::get('/professor/report', 'ProfessorController@report');
+
+Route::get('/professor/notifica/{id}', 'ProfessorController@editaNotificacao');
+Route::post('/professor/notifica', 'ProfessorController@notifica');

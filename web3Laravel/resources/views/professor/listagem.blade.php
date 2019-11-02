@@ -6,7 +6,11 @@
     width: 100px;
   }
 </style>
-  <h1>Listagem de Professores</h1>
+  <div class="row justify-content-between">
+    <h1 class="col">Listagem de Professores</h1>
+    <a href="/professor/report" target="_blank" class="btn btn-primary align-self-end">imprimir</a>
+  </div>
+
   <a href="/professor/novo" class="btn btn-primary">Novo</a>
   <table class="table table-striped table-bordered">
     <thead>
@@ -39,6 +43,7 @@
           <a class='btn btn-primary' href='/professor/edita/{{$professor->id}}'>Editar</a>
           <a class='btn btn-danger' href='/professor/delete/{{$professor->id}}'>Excluir</a>
           <a class='btn btn-primary' href='/horario/edita/{{$professor->id}}'>Horário</a>
+          <a class='btn btn-primary' href='/professor/notifica/{{$professor->id}}'>Notificação</a>
         </td>
         </tr>
       @endforeach

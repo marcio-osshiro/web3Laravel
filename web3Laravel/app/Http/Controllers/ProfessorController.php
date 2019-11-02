@@ -9,6 +9,8 @@ use Validator;
 use App\Http\Requests\ProfessorRequest;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\Mail\Notificacao;
+use Illuminate\Support\Facades\Mail;
 
 class ProfessorController extends Controller
 {
@@ -102,9 +104,29 @@ class ProfessorController extends Controller
   }
 
   public function report() {
-    $professores = Professor::all();
+    //$professores = Professor::all();
+    //App\Book::with('author')->get();
+    $professores = Professor::with('area')->get();
+
     $pdf = PDF::loadView('report.professor', compact('professores'));
-    //return $pdf->stream('professores.pdf');
-    return $pdf->download('professores.pdf');
+    //return $pdf->download('professores.pdf');
+    return $pdf->stream('professores.pdf');
   }
+
+  public function notifica(Request $request) {
+    $assunto = $request->input('assunto');
+    $mensagem = $request->input('mensagem');
+    $professor = Professor::find($request->input('id'));
+
+    Mail::to($professor->email)->send(new Notificacao($professor, $assunto, $mensagem));
+    return redirect('professor/lista3')->with('mensagem',
+      "Email para professor $professor->nome foi encaminhado com sucesso !!!");
+
+  }
+
+  public function editaNotificacao($id) {
+    $professor = Professor::find($id);
+    return view ('professor.frmNotificacao', compact('professor') );
+  }
+
 }
