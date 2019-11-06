@@ -57,3 +57,6 @@ Route::get('/professor/report', 'ProfessorController@report');
 
 Route::get('/professor/notifica/{id}', 'ProfessorController@editaNotificacao');
 Route::post('/professor/notifica', 'ProfessorController@notifica');
+
+Route::get('/redirect', 'SocialAuthGoogleController@redirect');
+Route::get('/callback', 'SocialAuthGoogleController@callback');

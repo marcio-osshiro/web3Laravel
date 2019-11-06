@@ -12,6 +12,7 @@
         "barryvdh/laravel-dompdf": "^0.8.5",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
+        "laravel/socialite": "^4.2",
         "laravel/tinker": "^1.0",
         "laravel/ui": "^1.0"
     },
