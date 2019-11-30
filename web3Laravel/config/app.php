@@ -180,6 +180,8 @@ return [
 
         Laravel\Socialite\SocialiteServiceProvider::class,
 
+        Barryvdh\Cors\ServiceProvider::class,
+
     ],
 
     /*
@@ -233,6 +235,7 @@ return [
 
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
     ],
 
 ];

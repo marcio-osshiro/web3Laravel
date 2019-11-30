@@ -19,6 +19,12 @@ class ProfessorController extends Controller
       $this->middleware('auth')->except("lista");
   }
 
+  public function listaapi() {
+    $professores = Professor::all();
+    return response()->json($professores->toArray());
+  }
+
+
   public function lista() {
     $professores = Professor::paginate(5);
     return view('professor.listagem', ['professores'=> $professores]);

@@ -60,3 +60,11 @@ Route::post('/professor/notifica', 'ProfessorController@notifica');
 
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/callback', 'SocialAuthGoogleController@callback');
+
+
+Route::get('/professor/listaapi', 'ProfessorController@listaapi');
+
+
+Route::get('/teste', function() {
+  echo 'teste';
+});
