@@ -1,0 +1,19 @@
+CRIANDO UMA API LARAVEL
+
+- criar controlador 
+    php artisan make:controller ApiProfessorController --api
+
+- registrar rota em api.php
+    Route::resource('professor', 'ApiProfessorController');
+
+- problema com CORS (diferente origem da chamada)
+    - pode incluir header() no response do controlador manualmente
+    
+    - adicionar componente: https://github.com/barryvdh/laravel-cors
+
+- api criada em ApiProfessorController
+
+- cliente da api (salvar no XAMPP)
+
+
+
